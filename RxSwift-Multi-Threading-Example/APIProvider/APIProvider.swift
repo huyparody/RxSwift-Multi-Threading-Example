@@ -39,9 +39,7 @@ class APIProvider {
                         case .success(let value):
                             if let dict = value as? [[String: Any]] {
                                 let json = Mapper<H>().mapArray(JSONArray: dict)
-                                var data = [H].init(JSONArray: [])
-                                json.forEach({data.append($0)})
-                                single(.success(data))
+                                single(.success(json))
                             }
                             else {
                                 single(.failure(AFError.explicitlyCancelled))
